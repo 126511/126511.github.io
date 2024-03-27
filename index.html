@@ -1,28 +1,39 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <title>Vincent's site</title>
-        <link rel="stylesheet" href="style.css">
-    </head>
-    <body style="background-color: lightgray;">
-        <div class="navbar">
-            <div class="navbar-content">
-                <a class="link" href="index.html">HOME</a>
-            </div>
-            <div class="navbar-content">
-                <a class="link" href="about-me.html">ABOUT ME</a>
-            </div>
-            <div class="navbar-content">
-                <a class="link" href="jolle.html">JOLLE</a>
-            </div>
-            <div ></div>
-            <div class="navbar-content" id="navbar-right">
-                <a class="link" href="code.html">CODE</a>
-            </div>
-        </div>
-        <div id="body">
-            <h1>WELCOME TO MY WEB PAGE!</h1>
-            <p>This is an epic page whereon you can several things.</p>
-        </div>
-    </body>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Get User Coordinates</title>
+</head>
+<body>
+<h1>Get User Coordinates</h1>
+<p>Click the button below to get your coordinates:</p>
+<button onclick="getUserCoordinates()">Get Coordinates</button>
+<div id="coords"></div>
+
+<script>
+function getUserCoordinates() {
+  // Check if Geolocation is supported
+  if ("geolocation" in navigator) {
+    // Geolocation is available
+    navigator.geolocation.getCurrentPosition(function(position) {
+      // Get the coordinates
+      var latitude = position.coords.latitude;
+      var longitude = position.coords.longitude;
+      
+      // Do something with the coordinates
+      document.getElementById("coords").innerHTML = latitude + ", " + longitude
+    }, function(error) {
+      // Handle error
+      console.error("Error getting geolocation:", error);
+      alert("Error getting geolocation. Please try again later.");
+    });
+  } else {
+    // Geolocation is not supported
+    console.error("Geolocation is not supported by this browser.");
+    alert("Geolocation is not supported by this browser.");
+  }
+}
+</script>
+</body>
 </html>
